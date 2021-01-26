@@ -75,8 +75,7 @@ const ListCat = ({catList, setCatList, loading, setLoading,
             <div className={classes.circular}>
                 <CircularProgress/>
             </div>
-        ) : 
-        catList.length ? (
+        ) :  (
             <div className="list-cat">
                 {
                     catList.map((cat, id) =>(
@@ -105,7 +104,7 @@ const ListCat = ({catList, setCatList, loading, setLoading,
                     
                 }
             </div>
-        ) : null
+        ) 
     )
 }
 
