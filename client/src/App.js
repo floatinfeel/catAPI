@@ -7,17 +7,13 @@ import Navbar from './components/Navbar'
 
 
 function App() {
-
-  const [catList, setCatList] = useState([])
   const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
 
   return (
     <div className="App">
       <Navbar/>
-      <ListCat 
-        catList={catList}
-        setCatList={setCatList}
+      <ListCat
         loading={loading}
         setLoading={setLoading}
         page={page}
