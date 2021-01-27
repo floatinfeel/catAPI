@@ -17,12 +17,12 @@ import { makeStyles } from '@material-ui/core/styles';
 // }));
 
 
-function ListCat({filteredData}){
+function ListCat({page, setPage,filteredData}){
     const cats = useSelector((state) => state.catReducer)
     console.log(cats);
     const dispatch = useDispatch()
     useEffect(() =>{
-        dispatch(readData())
+        dispatch(readData(page))
     }, [dispatch])
     return(
        <div className="list-cat">
