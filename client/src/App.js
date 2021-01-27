@@ -6,7 +6,7 @@ import ListCat from './components/ListCat'
 import Navbar from './components/Navbar'
 
 function App() {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(0)
   const [search, setSearch] = useState('')
   const [filteredData, setFilteredData] = useState([])
