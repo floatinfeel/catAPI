@@ -1,6 +1,6 @@
 import {READ} from '../constants/actionType'
 
-export default (cats = [], action) =>{
+const catReducer = (cats = [], action) =>{
     switch (action.type) {
         case READ:
             return action.payload
@@ -8,3 +8,4 @@ export default (cats = [], action) =>{
             return cats
     }
 }
+export default catReducer

@@ -17,20 +17,20 @@ import { makeStyles } from '@material-ui/core/styles';
 // }));
 
 
-function ListCat({loading, setLoading, page, setPage}){
+function ListCat({filteredData}){
     const cats = useSelector((state) => state.catReducer)
     console.log(cats);
     const dispatch = useDispatch()
     useEffect(() =>{
         dispatch(readData())
-    }, [])
+    }, [dispatch])
     return(
        <div className="list-cat">
            {
-            cats.map((cat, key) =>(
+            filteredData.map((cat, idx) =>(
                 <CardCat 
                     cat={cat}
-                    key={key}
+                    key={idx}
                 />
             ))   
            }

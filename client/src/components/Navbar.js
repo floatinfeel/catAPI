@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect} from 'react'
+import {useSelector} from 'react-redux'
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -63,7 +65,17 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Navbar = () => {
+const Navbar = ({search, setSearch, setFilteredData}) => {
+    const cats = useSelector((state) => state.catReducer)
+
+    useEffect(()=>{
+      setFilteredData( 
+        cats.filter( cat =>{
+          return cat.name.toLowerCase().includes( search.toLowerCase() )
+        }) 
+      )
+    }, [search, cats])
+
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -85,6 +97,7 @@ const Navbar = () => {
                     <SearchIcon />
                     </div>
                     <InputBase
+                    onChange={e=> setSearch(e.target.value)}
                     placeholder="Search…"
                     classes={{
                         root: classes.inputRoot,

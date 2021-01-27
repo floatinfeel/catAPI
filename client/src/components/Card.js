@@ -15,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
       },
 }));
 
-const CardCat = ({cat, key}) => {
+const CardCat = ({cat}) => {
     const classes = useStyles();
     return (
         <div>
-            <Card className={classes.root} key={key}>
+            <Card className={classes.root}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
