@@ -56,7 +56,7 @@ const CardCat = ({cat}) => {
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
-          <img src={cat.image.url} width="240" height="160"/>
+          <img alt="catImage" src={cat.image.url} width="240" height="160"/>
           <br></br>
           <Typography variant="subtitle2">
               Name:

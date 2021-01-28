@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 const Navbar = ({search, setSearch, setFilteredData}) => {
-    const cats = useSelector((state) => state.catReducer)
+    const {cats} = useSelector((state) => state.catReducer)
 
     useEffect(()=>{
       setFilteredData( 

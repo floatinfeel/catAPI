@@ -10,7 +10,7 @@ function App() {
   const [page, setPage] = useState(0)
   const [search, setSearch] = useState('')
   const [filteredData, setFilteredData] = useState([])
-  
+
   return (
     <div className="App">
       <Navbar 

@@ -1,9 +1,12 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import CardCat from './Card';
-import {useDispatch} from 'react-redux'
-import { readData } from '../store/actions/catAction';
+import {useSelector, useDispatch} from 'react-redux'
+import { readData, advancedPage } from '../store/actions/catAction';
+
 import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress'
+
+
 
 const useStyles = makeStyles((theme) => ({
       circular: {
@@ -18,32 +21,44 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function ListCat({page, setPage, filteredData, loading, setLoading}){
+function ListCat({filteredData}){
     const classes = useStyles()
-    
+    const {page,loading, noMore} = useSelector(state => state.catReducer)
     const dispatch = useDispatch()
+
+    // window.onscroll = () => {
+    //     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+    //       if(!noMore) {
+    //         dispatch(readData())
+    //       }
+    //     }
+    // }
     useEffect(() =>{
-        dispatch(readData(page))
-        setLoading(false)
-    }, [dispatch])
+        
+        dispatch(readData())
+    }, [dispatch, page])
+
+
     return(
-       loading ? (
-            <div className={classes.root}>
-                <CircularProgress />
-            </div>
-       ) : (
-            <div className="list-cat">
+           
+        loading ? (<div className={classes.circular}>
+            <CircularProgress />
+        </div> ) : (
+            
+            <div className="list-cat" style={{overflowY: 'auto'}} onScroll={(event) => console.log(event)}>
                 {
-                filteredData.map((cat, idx) =>(
-                    <CardCat 
-                        cat={cat}
-                        key={idx}
-                    />
-                ))   
+                    filteredData && filteredData.map((cat, idx) =>(
+                        <CardCat
+                            cat={cat}
+                            key={idx}
+                        />
+                    ))
                 }
+                {noMore ? <div className="text-center">no data anymore ...</div> : "" }
             </div>
-       )
-       
+            
+        )
+    
     )
 
     
