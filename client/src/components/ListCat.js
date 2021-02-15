@@ -1,11 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import CardCat from './Card';
 import {useSelector, useDispatch} from 'react-redux'
-import { readData, advancedPage } from '../store/actions/catAction';
-
+import { readData} from '../store/actions/catAction';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress'
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,25 +21,20 @@ const useStyles = makeStyles((theme) => ({
 
 function ListCat({filteredData}){
     const classes = useStyles()
-    const {page,loading, noMore} = useSelector(state => state.catReducer)
+    const {loading, cats} = useSelector(state => state.catReducer)
     const dispatch = useDispatch()
 
-    // window.onscroll = () => {
-    //     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-    //       if(!noMore) {
-    //         dispatch(readData())
-    //       }
-    //     }
-    // }
     useEffect(() =>{
-        
+        // dispatch(moreData())
         dispatch(readData())
-    }, [dispatch, page])
+    }, [dispatch])
+
 
 
     return(
-           
-        loading ? (<div className={classes.circular}>
+        
+        loading ? (
+        <div className={classes.circular}>
             <CircularProgress />
         </div> ) : (
             
@@ -54,7 +47,6 @@ function ListCat({filteredData}){
                         />
                     ))
                 }
-                {noMore ? <div className="text-center">no data anymore ...</div> : "" }
             </div>
             
         )

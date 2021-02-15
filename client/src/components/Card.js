@@ -117,7 +117,7 @@ const CardCat = ({cat}) => {
                                 aria-labelledby="simple-modal-title"
                                 aria-describedby="simple-modal-description"
                             >
-                                {body}
+                            {body}
                             </Modal>
                         </Collapse> : null
                         }

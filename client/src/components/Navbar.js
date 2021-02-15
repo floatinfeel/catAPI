@@ -69,11 +69,13 @@ const Navbar = ({search, setSearch, setFilteredData}) => {
     const {cats} = useSelector((state) => state.catReducer)
 
     useEffect(()=>{
-      setFilteredData( 
-        cats.filter( cat =>{
-          return cat.name.toLowerCase().includes( search.toLowerCase() )
-        }) 
-      )
+      if(cats !== undefined){
+        setFilteredData( 
+          cats.filter( cat =>{
+            return cat.name.toLowerCase().includes( search.toLowerCase() )
+          }) 
+        )
+      }
     }, [search, cats])
 
     const classes = useStyles();
